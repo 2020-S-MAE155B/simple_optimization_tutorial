@@ -1,15 +1,15 @@
 import unittest
 
-from simple_optimization.components.cl_comp import CLComp
+from simple_optimization.components.cdi_comp import CDiComp
 from openmdao.api import Problem
 from openmdao.utils.assert_utils import assert_check_partials
 
 
-class TestCLComp(unittest.TestCase):
+class TestCDiComp(unittest.TestCase):
 
     def test_component_and_derivatives(self):
         prob = Problem()
-        prob.model = CLComp()
+        prob.model = CDiComp(e=0.5)
         prob.setup()
         prob.run_model()
 
