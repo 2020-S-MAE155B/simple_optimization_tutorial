@@ -9,6 +9,6 @@ stages:
 nosetests:
     stage: Test
     script:
-        - nosetests
+    - nosetests
 
 
