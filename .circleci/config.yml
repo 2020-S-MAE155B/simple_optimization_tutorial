@@ -1,4 +1,4 @@
-version: 2.1
+ersion: 2.1
 
 orbs:
   python: circleci/python@0.2.1
@@ -11,7 +11,8 @@ jobs:
       - python/load-cache
       - python/install-deps
       - python/save-cache
-      - run: nosetests
+      - run:
+          command: ./manage.py test
           name: Test
 
 workflows:
