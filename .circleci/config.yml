@@ -12,8 +12,7 @@ jobs:
       - python/install-deps
       - python/save-cache
       - run:
-          command: ./manage.py test
-          name: Test
+         - nosetests
 
 workflows:
   main:
