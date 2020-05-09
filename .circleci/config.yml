@@ -11,8 +11,6 @@ jobs:
       - python/load-cache
       - python/install-deps
       - python/save-cache
-      - run: yes | pip uninstall nose
-      - run: pip install nose
       - run: nosetests
      
 
