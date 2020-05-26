@@ -34,8 +34,22 @@ model.add_subsystem('inputs_comp', comp, promotes=['*'])
 comp = CLComp()
 model.add_subsystem('cl_comp', comp, promotes=['*'])
 
-comp = CDiComp(e=0.7)
-model.add_subsystem('cdi_comp', comp, promotes=['*'])
+e = 0.7
+if 1:
+    comp = CDiComp(e=e)
+    model.add_subsystem('cdi_comp', comp, promotes=['*'])
+else:
+    from lsdo_utils.api import PowerCombinationComp
+    comp = PowerCombinationComp(
+        shape=(1,),
+        out_name='CDi',
+        coeff=1. / np.pi / e,
+        powers_dict=dict(
+            CL=2.,
+            AR=-1.,
+        )
+    )
+    model.add_subsystem('cdi_comp', comp, promotes=['*'])
 
 comp = ExecComp('CD = CD0 + CDi')
 model.add_subsystem('cd_comp', comp, promotes=['*'])
