@@ -19,6 +19,8 @@ analysis_group = AnalysisGroup(
 )
 prob.model.add_subsystem('hover_analysis_group', analysis_group)
 
+prob.model.connect('cruise_analysis_group.sonic_speed', 'hover_analysis_group.sonic_speed')
+
 prob.setup(check=True)
 
 prob['cruise_analysis_group.altitude'] = 500.
